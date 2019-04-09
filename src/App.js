@@ -4,8 +4,6 @@ import gql from "graphql-tag";
 
 import PlantListItem from "./components/plant-list-item";
 
-import "./App.css";
-
 const PLANT = gql`
   {
     Plants {
