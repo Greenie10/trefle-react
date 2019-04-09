@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
+import List from "@material-ui/core/List";
+
 import PlantListItem from "./components/plant-list-item";
 
 const PLANT = gql`
@@ -18,7 +20,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <ul>
+        <List>
           <Query query={PLANT}>
             {({ loading, error, data }) => {
               if (loading) return "Loading...";
@@ -33,7 +35,7 @@ class App extends Component {
               ));
             }}
           </Query>
-        </ul>
+        </List>
       </div>
     );
   }
