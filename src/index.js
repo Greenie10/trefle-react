@@ -5,6 +5,7 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { ApolloProvider } from "react-apollo";
 import ApolloClient from "apollo-boost";
+import "typeface-roboto";
 
 const client = new ApolloClient({
   uri: "/graphql"
