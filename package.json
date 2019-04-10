@@ -13,7 +13,9 @@
     "react-dom": "^16.8.6",
     "react-scripts": "2.1.8",
     "styled-components": "^4.2.0",
-    "typeface-roboto": "0.0.54"
+    "typeface-roboto": "0.0.54",
+    "typography": "^0.16.19",
+    "typography-theme-twin-peaks": "^0.16.19"
   },
   "scripts": {
     "start": "react-scripts start",
