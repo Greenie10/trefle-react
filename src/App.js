@@ -33,7 +33,6 @@ class App extends Component {
         <ul>
           <Query query={PLANTS}>
             {({ loading, error, data }) => {
-              console.log("Plants query", data.Plants);
               if (loading) return "Loading...";
               if (error) return `Error! ${error.message}`;
               return data.Plants.map(plants => (
@@ -51,8 +50,12 @@ class App extends Component {
           {({ loading, error, data }) => {
             if (loading) return "Loading...";
             if (error) return `Error! ${error.message}`;
-            console.log("OnePlant query", data);
-            return <OnePlant scientific_name={data.Plant.scientific_name} />;
+            return (
+              <OnePlant
+                scientific_name={data.Plant.scientific_name}
+                common_name={data.Plant.common_name}
+              />
+            );
           }}
         </Query>
       </div>
