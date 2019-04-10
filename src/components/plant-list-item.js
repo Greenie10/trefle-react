@@ -1,12 +1,11 @@
 import React from "react";
 
-import ListItem from "@material-ui/core/ListItem";
-
-function PlantListItem({ link, scientific_name }) {
+function PlantListItem({ common_name, link, scientific_name }) {
   return (
-    <ListItem>
+    <li>
+      {common_name || "no common name"} -&nbsp;
       <a href={link}>{scientific_name}</a>
-    </ListItem>
+    </li>
   );
 }
 
