@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import Helmet from "react-helmet";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
@@ -13,6 +14,10 @@ const client = new ApolloClient({
 
 const WrappedApp = () => (
   <ApolloProvider client={client}>
+    <Helmet>
+      <title>Trefle Plants</title>
+      <meta name="description" content="React, GraphQL, Apollo & Trefle!" />
+    </Helmet>
     <App />
   </ApolloProvider>
 );
