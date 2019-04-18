@@ -9,8 +9,9 @@ const PLANTS = gql`
   {
     Plants {
       common_name
+      complete_data
+      family_common_name
       id
-      link
       scientific_name
       slug
     }
@@ -20,9 +21,17 @@ const PLANTS = gql`
 const PLANT = gql`
   query OnePlant($id: Int) {
     Plant(id: $id) {
-      scientific_name
       common_name
       family_common_name
+      flower_color
+      id
+      native_status
+      propagated_by_bulbs
+      scientific_name
+      seedling_vigor
+      slug
+      temperature_minimum_deg_f
+      growth_form
     }
   }
 `;
@@ -30,15 +39,15 @@ const PLANT = gql`
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { plantId: "" };
+    this.state = { plantId: 103505 };
   }
   setPlantId = plantId => {
     this.setState({ plantId: plantId });
   };
 
   render() {
-    console.log("THIS.PROPS", this.props);
     let id = this.state.plantId;
+
     return (
       <div className="App">
         <h1>Plants</h1>
@@ -50,7 +59,6 @@ class App extends Component {
               return data.Plants.map(plants => (
                 <PlantListItem
                   common_name={plants.common_name}
-                  link={plants.link}
                   scientific_name={plants.scientific_name}
                   key={plants.slug}
                   id={plants.id}
@@ -60,19 +68,11 @@ class App extends Component {
             }}
           </Query>
         </ul>
-
         <Query query={PLANT} variables={{ id: id }}>
           {({ loading, error, data }) => {
             if (loading) return "Loading...";
             if (error) return `Error! ${error.message}`;
-            return (
-              <OnePlant
-                scientific_name={data.Plant.scientific_name}
-                common_name={data.Plant.common_name}
-                family_common_name={data.Plant.family_common_name}
-                plantId={this.state.plantId}
-              />
-            );
+            return <OnePlant plant={data.Plant} plantId={this.state.plantId} />;
           }}
         </Query>
       </div>
